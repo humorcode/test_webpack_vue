@@ -10,3 +10,7 @@
      color: red;
      /* background: url('./icon.png'); */
  }
+ 
+ body {
+     background: rgb(148, 238, 148);
+ }

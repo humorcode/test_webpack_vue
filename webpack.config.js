@@ -5,8 +5,8 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        app: './src/index.js',
-        print: './src/print.js'
+        app: './src/index.js'
+            // print: './src/print.js'
     },
     output: {
         filename: '[name].bundle.js',
@@ -15,9 +15,11 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        hot: true
     },
-    plugins: [
+    plugins: [new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: "我擦"
