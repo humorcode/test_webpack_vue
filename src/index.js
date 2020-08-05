@@ -3,12 +3,21 @@ import './style.css';
 import Icon from './icon.png';
 import Data from './data.xml';
 import printMe from './print.js';
+import { cube } from './math.js';
 
 function component() {
     //--------------------------------
     var element = document.createElement('div');
     element.innerHTML = _.join(['Hello', 'webpack', '哈哈'], ', ,');
     element.classList.add('hello');
+    //--------------------------------
+    var element2 = document.createElement('pre');
+    element2.innerHTML = [
+        'Hello webpack!',
+        '5 cubed is equal to ' + cube(5)
+    ].join('\n\n');
+    element.appendChild(element2);
+    //--------------------------------
     //--------------------------------
     var myIcon = new Image();
     myIcon.src = Icon;
