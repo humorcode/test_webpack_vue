@@ -4,6 +4,8 @@ import Icon from './icon.png';
 import Data from './data.xml';
 import { cube } from './math.js';
 
+alert("环境:" + process.env.NODE_ENV);
+
 function component() {
     //--------------------------------
     var element = document.createElement('div');
