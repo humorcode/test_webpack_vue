@@ -2,7 +2,6 @@ import _ from 'lodash';
 import './style.css';
 import Icon from './icon.png';
 import Data from './data.xml';
-import printMe from './print.js';
 import { cube } from './math.js';
 
 function component() {
@@ -26,7 +25,11 @@ function component() {
     //--------------------------------
     var btn = document.createElement('button');
     btn.innerHTML = 'Click me and check the console!';
-    btn.onclick = printMe;
+    btn.onclick = e =>
+        import ('./print.js').then(p => {
+            var print = p.default;
+            print();
+        });
     element.appendChild(btn);
     //--------------------------------
     return element;
