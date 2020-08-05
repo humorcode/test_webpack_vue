@@ -7,6 +7,7 @@ module.exports = webpackmerge.merge(common, {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
+        publicPath: '/',
         hot: true
     },
     plugins: [new webpack.NamedModulesPlugin(),
