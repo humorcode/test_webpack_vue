@@ -4,7 +4,7 @@ import Icon from './icon.png';
 import Data from './data.xml';
 import { cube } from './math.js';
 
-alert("环境:" + process.env.NODE_ENV);
+// alert("环境:" + process.env.NODE_ENV);
 
 function component() {
     //--------------------------------
@@ -50,3 +50,8 @@ if (module.hot) {
         document.body.appendChild(element);
     })
 }
+
+
+
+import indexvue from './index.vue.js'
+indexvue.print

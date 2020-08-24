@@ -18,7 +18,9 @@ module.exports = {
         new webpack.HashedModuleIdsPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: "我擦Production"
+            title: "VUE 文档引导入门",
+            template: './src/index.html',
+            filename: 'index.html'
         })
     ],
     optimization: {
