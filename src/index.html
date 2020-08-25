@@ -4,6 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>起步</title>
+    <style>
+        .tab-button {
+            padding: 6px 10px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background: #f0f0f0;
+            margin-bottom: -1px;
+            margin-right: -1px;
+        }
+        
+        .tab-button:hover {
+            background: #e0e0e0;
+        }
+        
+        .tab-button.active {
+            background: #e0e0e0;
+        }
+        
+        .tab {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -106,9 +131,21 @@
         </div>
         <custom-input v-model="searchText"></custom-input>
         {{searchText}}
-    </div>
+        <alert-box>
+            Something bad happened.
+        </alert-box>
     </div>
     <hr/>
+    <div id="example_component" class="demo">动态组件
+        <button v-for="tab in tabs" v-bind:key="tab" v-bind:class="['tab-button', { active: currentTab === tab }]" v-on:click="currentTab = tab">
+              {{ tab }}
+       </button>
+        <component v-bind:is="currentTabComponent" class="tab">动态组件</component>
+        <table>
+            <blog-post-row>A</blog-post-row>
+            <tr is="blog-post-row" title=".解析 DOM 模板时的注意事项.">B</tr>
+        </table>
+    </div>
 </body>
 
 </html>

@@ -155,6 +155,14 @@ Vue.component('custom-input', {
       >
     `
 })
+Vue.component('alert-box', {
+    template: `
+      <div class="demo-alert-box">
+        <strong>Error!</strong>
+        <slot></slot>
+      </div>
+    `
+})
 new Vue({
         el: '#example20',
         data: {
@@ -172,4 +180,29 @@ new Vue({
             }
         }
     })
-    //=================================================================
+    //动态组件=================================================================
+var tabhome = { template: "<div><slot></slot>Home componentA</div>" }
+var tabposts = { template: "<div><slot></slot>Home componentB<tabhome></tabhome></div>", components: { tabhome } }
+var tabarchive = { template: "<div><slot></slot>Home componentC</div>" }
+var blogpostrow = { template: "<tr>{{title}}<slot></slot></tr>", props: ['title'] }
+new Vue({
+    el: "#example_component",
+    data: {
+        currentTab: "Home",
+        tabs: ["Home", "Posts", "Archive"]
+    },
+    components: {
+        'tab-home': tabhome,
+        'tab-posts': tabposts,
+        'tab-archive': tabarchive,
+        'blog-post-row': blogpostrow
+    },
+    computed: {
+        currentTabComponent: function() {
+            return "tab-" + this.currentTab.toLowerCase();
+        }
+    }
+});
+//=================================================================
+//=================================================================
+//=================================================================
