@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
     entry: {
@@ -15,6 +16,7 @@ module.exports = {
         publicPath: './'
     },
     plugins: [
+        new VueLoaderPlugin(),
         new webpack.HashedModuleIdsPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
@@ -23,6 +25,7 @@ module.exports = {
             filename: 'index.html'
         })
     ],
+    resolve: { alias: { "vue$": "./src/vue.js" } },
     optimization: {
         // splitChunks: {
         //     chunks: "all", //async异步代码分割 initial同步代码分割 all同步异步分割都开启
@@ -49,6 +52,9 @@ module.exports = {
     },
     module: {
         rules: [{
+                test: /\.vue$/,
+                use: ['vue-loader']
+            }, {
                 test: /\.css$/,
                 use: [
                     'style-loader',

@@ -27,125 +27,154 @@
         .tab {
             border: 1px solid #ccc;
             padding: 10px;
+            background-color: white;
         }
     </style>
+    <script>
+        function fvisible(visible, hidden) {
+            document.getElementById(hidden).style.display = 'none'
+            document.getElementById(visible).style.display = ''
+        }
+    </script>
 </head>
 
 <body>
-    <div id="NODEENV">
-        process.env.NODE_ENV: {{ message }} <span v-for="n in 10">{{ n }} </span>
-    </div>
-    <div id="example-1">
-        <ul>
-            <li v-for="item in items" :key="item.message">
-                {{ item.message }}
-            </li>
-            <li v-for="(item, index) in items">
-                {{ parentMessage }} - {{ index }} - {{ item.message }}
-            </li>
-            <li v-for="value in object">
-                {{ value }}
-            </li>
-        </ul>
-        <ul v-for="set in sets">
-            <li v-for="n in even(set)">{{ n }}</li>
-            <template v-for="item in items">
+    <button onclick="fvisible('jichuzujian','shenruzujian')">基础组件</button>
+    <button onclick="fvisible('shenruzujian','jichuzujian')">深入了解组件</button>
+    <hr/>
+    <hr/>
+    <div id="jichuzujian" style="display: none;">P基础组件P
+        <div id="NODEENV">
+            process.env.NODE_ENV: {{ message }} <span v-for="n in 10">{{ n }} </span>
+        </div>
+        </hr>
+        <div id="example-1">
+            <ul>
+                <li v-for="item in items" :key="item.message">
+                    {{ item.message }}
+                </li>
+                <li v-for="(item, index) in items">
+                    {{ parentMessage }} - {{ index }} - {{ item.message }}
+                </li>
+                <li v-for="value in object">
+                    {{ value }}
+                </li>
+            </ul>
+            <ul v-for="set in sets">
+                <li v-for="n in even(set)">{{ n }}</li>
+                <template v-for="item in items">
                 <li>{{ item.message }}</li>
                 <li class="divider" role="presentation">abc</li>
             </template>
-        </ul>
-        <div v-for="(value, name, index) in object">
-            {{ index }}. {{ name }}: {{ value }}
+            </ul>
+            <div v-for="(value, name, index) in object">
+                {{ index }}. {{ name }}: {{ value }}
+            </div>
+            <ul v-if="todos.length">
+                <li v-for="todo in todos">
+                    {{ todo }}
+                </li>
+            </ul>
+            <p v-else>No todos left!</p>
         </div>
-        <ul v-if="todos.length">
-            <li v-for="todo in todos">
-                {{ todo }}
-            </li>
-        </ul>
-        <p v-else>No todos left!</p>
-    </div>
-    <div id="todo-list-example">
-        <form v-on:submit.prevent="addNewTodo">
-            <label for="new-todo">Add a todo</label>
-            <input v-model="newTodoText" id="new-todo" placeholder="E.g. Feed the cat">
-            <button>Add</button>
-        </form>
-        <ul>
-            <li is="todo-item" v-for="(todo, index) in todos" v-bind:key="todo.id" :id="todo.id" v-bind:title="todo.title" v-on:remove="todos.splice(index, 1)"></li>
-        </ul>
-    </div>
-    <hr/>
-    <div id="example-10">
-        <button v-on:click="greet">Greet</button>
-        <button v-on:click="counter += 1">Add 1</button>
-        <button v-on:click="say('hi')">Say hi</button>
-        <button v-on:click="say('what')">Say what</button>
-        <button v-on:click="warn('Form cannot be submitted yet.', $event)">            Submit          </button>
-        <p>The button above has been clicked {{ counter }} times.</p>
-        <input v-on:keyup.enter="submit" placeholder="keyup.enter">
-        <input v-on:keyup.page-down="submit" placeholder="keyup.page-down">
-        <input v-on:keyup.13="submit" placeholder="keyup.13">
-        <input v-on:keyup.alt.C="submit" placeholder="keyup.alt.C">
-        <button v-on:click.ctrl="submit">click.ctrl(组合键包含ctrl时)</button>
-        <button v-on:click.ctrl.exact="submit">click.ctrl.exact(组合键只有ctrl时)</button>
-        <button v-on:click.exact="submit">click.exact</button>
-    </div>
-    <hr/>
-    <div id="example11">表单输入绑定
-        <input v-model="message" placeholder="edit me">
-        <textarea v-model="message" placeholder="add multiple lines"></textarea>
-        <p style="white-space: pre-line;">{{ message }}</p>
-        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-        <label for="jack">Jack</label>
-        <input type="checkbox" id="john" value="John" v-model="checkedNames">
-        <label for="john">John</label>
-        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-        <label for="mike">Mike</label>
-        <span>Checked names: {{ checkedNames }}</span>
-        <br>
-        <input type="radio" id="one" value="One" v-model="picked">
-        <label for="one">One</label>
-        <br>
-        <input type="radio" id="two" value="Two" v-model="picked">
-        <label for="two">Two</label>
-        <br>
-        <select v-model="selected">
+        <div id="todo-list-example">
+            <form v-on:submit.prevent="addNewTodo">
+                <label for="new-todo">Add a todo</label>
+                <input v-model="newTodoText" id="new-todo" placeholder="E.g. Feed the cat">
+                <button>Add</button>
+            </form>
+            <ul>
+                <li is="todo-item" v-for="(todo, index) in todos" v-bind:key="todo.id" :id="todo.id" v-bind:title="todo.title" v-on:remove="todos.splice(index, 1)"></li>
+            </ul>
+        </div>
+        <hr/>
+        <div id="example-10">
+            <button v-on:click="greet">Greet</button>
+            <button v-on:click="counter += 1">Add 1</button>
+            <button v-on:click="say('hi')">Say hi</button>
+            <button v-on:click="say('what')">Say what</button>
+            <button v-on:click="warn('Form cannot be submitted yet.', $event)">            Submit          </button>
+            <p>The button above has been clicked {{ counter }} times.</p>
+            <input v-on:keyup.enter="submit" placeholder="keyup.enter">
+            <input v-on:keyup.page-down="submit" placeholder="keyup.page-down">
+            <input v-on:keyup.13="submit" placeholder="keyup.13">
+            <input v-on:keyup.alt.C="submit" placeholder="keyup.alt.C">
+            <button v-on:click.ctrl="submit">click.ctrl(组合键包含ctrl时)</button>
+            <button v-on:click.ctrl.exact="submit">click.ctrl.exact(组合键只有ctrl时)</button>
+            <button v-on:click.exact="submit">click.exact</button>
+        </div>
+        <hr/>
+        <div id="example11">表单输入绑定
+            <input v-model="message" placeholder="edit me">
+            <textarea v-model="message" placeholder="add multiple lines"></textarea>
+            <p style="white-space: pre-line;">{{ message }}</p>
+            <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="john" value="John" v-model="checkedNames">
+            <label for="john">John</label>
+            <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+            <label for="mike">Mike</label>
+            <span>Checked names: {{ checkedNames }}</span>
+            <br>
+            <input type="radio" id="one" value="One" v-model="picked">
+            <label for="one">One</label>
+            <br>
+            <input type="radio" id="two" value="Two" v-model="picked">
+            <label for="two">Two</label>
+            <br>
+            <select v-model="selected">
             <option v-for="option in options" v-bind:value="option.value">
               {{ option.text }}
             </option>
           </select>
-        <span>Selected: {{ selected }}</span>
-        <br>
-        <input type="radio" v-model="picked" value="a">
-        <span>Picked: {{ picked }}</span>
-        <input type="checkbox" v-model="toggle" true-value="yes" false-value="no">
-        <input v-model.lazy.trim="message">
-        <input v-model.number="age" type="number">
-    </div>
-    <hr/>
-    <div id="example20">基础组件
-        <button-counter></button-counter>
-        <button-counter></button-counter>
-        <div :style="{ fontSize: postFontSize + 'em' }">
-            <blog-post v-on:enlarge-text="onEnlargeText" v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></blog-post>
+            <span>Selected: {{ selected }}</span>
+            <br>
+            <input type="radio" v-model="picked" value="a">
+            <span>Picked: {{ picked }}</span>
+            <input type="checkbox" v-model="toggle" true-value="yes" false-value="no">
+            <input v-model.lazy.trim="message">
+            <input v-model.number="age" type="number">
         </div>
-        <custom-input v-model="searchText"></custom-input>
-        {{searchText}}
-        <alert-box>
-            Something bad happened.
-        </alert-box>
-    </div>
-    <hr/>
-    <div id="example_component" class="demo">动态组件
-        <button v-for="tab in tabs" v-bind:key="tab" v-bind:class="['tab-button', { active: currentTab === tab }]" v-on:click="currentTab = tab">
+        <hr/>
+        <div id="example20">基础组件
+            <button-counter></button-counter>
+            <button-counter></button-counter>
+            <div :style="{ fontSize: postFontSize + 'em' }">
+                <blog-post v-on:enlarge-text="onEnlargeText" v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></blog-post>
+            </div>
+            <custom-input v-model="searchText"></custom-input>
+            {{searchText}}
+            <alert-box>
+                Something bad happened.
+            </alert-box>
+        </div>
+        <hr/>
+        <div id="example_component" class="demo">动态组件
+            <button v-for="tab in tabs" v-bind:key="tab" v-bind:class="['tab-button', { active: currentTab === tab }]" v-on:click="currentTab = tab">
               {{ tab }}
        </button>
-        <component v-bind:is="currentTabComponent" class="tab">动态组件</component>
-        <table>
-            <blog-post-row>A</blog-post-row>
-            <tr is="blog-post-row" title=".解析 DOM 模板时的注意事项.">B</tr>
-        </table>
+            <component v-bind:is="currentTabComponent" class="tab">动态组件</component>
+            <table>
+                <blog-post-row v-bind="post">,blog-post-row-slot</blog-post-row>
+                <tr is="blog-post-row" title=".解析 DOM 模板时的注意事项."></tr>
+            </table>
+            <base-checkbox v-model="basecheckbox">{{basecheckbox?'阳光':'白云'}}</base-checkbox>
+            <base-input v-on:focus="onFocus" placeholder='将原生事件绑定到组件' label="将原生事件绑定到组件"></base-input>
+        </div>
+        <hr/>
+        <hr/>
+        <div id="component_model">模块系统
+            <BaseInput v-model="searchText" @keydown.enter="search" />
+            <BaseButton @click="search">
+                <BaseIcon name="search" />
+            </BaseButton>
+        </div>
+        <hr/>
+        <hr/>
     </div>
+    <div id="shenruzujian">P深入了解组件P</div>
+    <hr/>
+    <hr/>
 </body>
 
 </html>

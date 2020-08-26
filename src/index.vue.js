@@ -184,12 +184,73 @@ new Vue({
 var tabhome = { template: "<div><slot></slot>Home componentA</div>" }
 var tabposts = { template: "<div><slot></slot>Home componentB<tabhome></tabhome></div>", components: { tabhome } }
 var tabarchive = { template: "<div><slot></slot>Home componentC</div>" }
-var blogpostrow = { template: "<tr>{{title}}<slot></slot></tr>", props: ['title'] }
+var blogpostrow = {
+    template: "<tr>{{tit}}<slot></slot></tr>",
+    props: ['title'],
+    data: function() {
+        return {
+            tit: this.title.split('').reverse().join('')
+        }
+    }
+}
+Vue.component('base-checkbox', {
+    model: {
+        prop: 'checked',
+        event: 'change'
+    },
+    props: {
+        checked: Boolean
+    },
+    template: `
+    <div><input id='abc'
+    type="checkbox"
+    v-bind:checked="checked"
+    v-on:change="$emit('change', $event.target.checked)"
+  ></input><label for="abc"><slot></slot></label></div>
+`
+})
+Vue.component('base-input', {
+    inheritAttrs: false,
+    props: ['label', 'value'],
+    computed: {
+        inputListeners: function() {
+            var vm = this
+                // `Object.assign` 将所有的对象合并为一个新对象
+            return Object.assign({},
+                // 我们从父级添加所有的监听器
+                this.$listeners,
+                // 然后我们添加自定义监听器，
+                // 或覆写一些监听器的行为
+                {
+                    // 这里确保组件配合 `v-model` 的工作
+                    input: function(event) {
+                        vm.$emit('input', event.target.value)
+                    }
+                }
+            )
+        }
+    },
+    template: `
+      <label>
+        {{ label }}
+        <input
+          v-bind="$attrs"
+          v-bind:value="value"
+          v-on="inputListeners"
+        >
+      </label>
+    `
+})
 new Vue({
     el: "#example_component",
     data: {
         currentTab: "Home",
-        tabs: ["Home", "Posts", "Archive"]
+        tabs: ["Home", "Posts", "Archive"],
+        post: {
+            id: 1,
+            title: '自动对象的所有 property'
+        },
+        basecheckbox: true
     },
     components: {
         'tab-home': tabhome,
@@ -201,8 +262,14 @@ new Vue({
         currentTabComponent: function() {
             return "tab-" + this.currentTab.toLowerCase();
         }
+    },
+    methods: {
+        onFocus: function(e) {
+            console.log(e)
+        }
     }
 });
+//=================================================================
 //=================================================================
 //=================================================================
 //=================================================================
