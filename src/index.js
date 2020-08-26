@@ -57,6 +57,10 @@ import indexvue from './index.vue.js'
 indexvue.print
 
 //深入组件------------------------------------------------
+
+import index2vue from './index2.vue.js'
+index2vue.print
+
 // import upperFirst from 'lodash/upperFirst'
 // import camelCase from 'lodash/camelCase'
 

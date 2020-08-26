@@ -172,7 +172,21 @@
         <hr/>
         <hr/>
     </div>
-    <div id="shenruzujian">P深入了解组件P</div>
+    <div id="shenruzujian">
+        <p>P深入了解组件P</p>
+        <base-layout v-bind:user="user">
+            <template v-slot:header>
+          <h4>Here might be a page title={{user}}</h4>
+        </template>
+            <template v-slot:default>
+          <p>A paragraph for the main content.</p>
+          <p>And another one.</p>
+        </template>
+            <template v-slot:footer>
+          <h4>Here's some contact info</h4>
+        </template>
+        </base-layout>
+    </div>
     <hr/>
     <hr/>
 </body>
