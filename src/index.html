@@ -174,17 +174,11 @@
     </div>
     <div id="shenruzujian">
         <p>P深入了解组件P</p>
-        <base-layout v-bind:user="user">
-            <template v-slot:header>
-          <h4>Here might be a page title={{user}}</h4>
-        </template>
-            <template v-slot:default>
-          <p>A paragraph for the main content.</p>
-          <p>And another one.</p>
-        </template>
-            <template v-slot:footer>
-          <h4>Here's some contact info</h4>
-        </template>
+        <base-layout :userobj="userobj" :filtered-todos="filteredTodos">
+            <template v-slot:header="slotProps"> <h4>父级>访问子级={{slotProps.user}}(头)</h4> </template>
+            <template #default> <p>父级>覆盖子级内容(主内容区)</p> </template>
+            <template #footer="{userzdy={username:'zidingyi'}}"> <h4>父级>覆盖子级内容={{userzdy}}(尾)</h4> </template>
+            <template #todo="{todo:todoabc}">父级>访问子级>{{ todoabc }}</template>
         </base-layout>
     </div>
     <hr/>
