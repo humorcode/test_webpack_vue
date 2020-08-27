@@ -1,4 +1,5 @@
 import Vue from './vue.js'
+import { map } from 'lodash';
 export default function print() {
     return 'vue function';
 }
@@ -27,8 +28,8 @@ Vue.component('base-layout', {
                 </ul>
         </div>`
 })
-var shenruzujian = new Vue({
-    el: '#shenruzujian',
+var shenruzujian000 = new Vue({
+    el: '#shenruzujian000',
     data: {
         userobj: { id: 1, username: 'user123' },
         filteredTodos: [
@@ -37,3 +38,5 @@ var shenruzujian = new Vue({
         ]
     }
 })
+
+//--------------------------------------------------

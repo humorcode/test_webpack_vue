@@ -57,9 +57,25 @@ import indexvue from './index.vue.js'
 indexvue.print
 
 //深入组件------------------------------------------------
-
 import index2vue from './index2.vue.js'
 index2vue.print
+
+//异步组件------------------------------------------------
+import index3vue from './index3.async.vue.js'
+index3vue.print
+
+//异步组件------------------------------------------------
+import index4bianjie from './index4.bianjie.js'
+index4bianjie.print
+
+//程序化的事件侦听器------------------------------------------------
+import chengxuhuashijian from './index5.sanfangzujian.js'
+chengxuhuashijian.print
+
+//模板定义的替代品------------------------------------------------
+import index6moban from './index6.moban.js'
+index6moban.print
+
 
 // import upperFirst from 'lodash/upperFirst'
 // import camelCase from 'lodash/camelCase'

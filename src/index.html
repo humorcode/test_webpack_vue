@@ -29,21 +29,20 @@
             padding: 10px;
             background-color: white;
         }
-    </style>
-    <script>
-        function fvisible(visible, hidden) {
-            document.getElementById(hidden).style.display = 'none'
-            document.getElementById(visible).style.display = ''
+        
+        .is-hidden {
+            display: none
         }
-    </script>
+    </style>
 </head>
 
 <body>
-    <button onclick="fvisible('jichuzujian','shenruzujian')">基础组件</button>
-    <button onclick="fvisible('shenruzujian','jichuzujian')">深入了解组件</button>
+    <button onclick="fvisible('jichuzujian')">基础组件</button>
+    <button onclick="fvisible('shenruzujian')">深入了解组件,异步组件</button>
+    <button onclick="fvisible('mobandingyitab')">模板定义的替代品</button>
     <hr/>
     <hr/>
-    <div id="jichuzujian" style="display: none;">P基础组件P
+    <div id="jichuzujian">P基础组件P
         <div id="NODEENV">
             process.env.NODE_ENV: {{ message }} <span v-for="n in 10">{{ n }} </span>
         </div>
@@ -172,17 +171,52 @@
         <hr/>
         <hr/>
     </div>
-    <div id="shenruzujian">
-        <p>P深入了解组件P</p>
-        <base-layout :userobj="userobj" :filtered-todos="filteredTodos">
-            <template v-slot:header="slotProps"> <h4>父级>访问子级={{slotProps.user}}(头)</h4> </template>
-            <template #default> <p>父级>覆盖子级内容(主内容区)</p> </template>
-            <template #footer="{userzdy={username:'zidingyi'}}"> <h4>父级>覆盖子级内容={{userzdy}}(尾)</h4> </template>
-            <template #todo="{todo:todoabc}">父级>访问子级>{{ todoabc }}</template>
-        </base-layout>
+    <div id="shenruzujian">P深入了解组件P
+        <div id="shenruzujian000">
+            <base-layout :userobj="userobj" :filtered-todos="filteredTodos">
+                <template v-slot:header="slotProps"> <h4>父级>访问子级={{slotProps.user}}(头)</h4> </template>
+                <template #default> <p>父级>覆盖子级内容(主内容区)</p> </template>
+                <template #footer="{userzdy={username:'zidingyi'}}"> <h4>父级>覆盖子级内容={{userzdy}}(尾)</h4> </template>
+                <template #todo="{todo:todoabc}">父级>访问子级>{{ todoabc }}</template>
+            </base-layout>
+        </div>
+        <hr/>
+        <div id="asynczujian"> 异步组件
+            <async-example>
+                <h4>test</h4>
+            </async-example>
+        </div>
+        <hr/>
+        <div id="yilaizhuru"> 依赖注入
+            <google-map>
+                <google-map-marker></google-map-marker>
+            </google-map>
+        </div>
+        <div id="chengxuhuashijian">程序化的事件侦听器
+            <input ref="startDateInput" v-model="date" />
+            <input ref="endDateInput" v-model="date" />
+        </div>
+        <div id="zujiantreefolder">组件之间循环引用
+            <tree-folder-contents :children="foldersssss" />
+        </div>
+    </div>
+    <div id="mobandingyitab">模板定义的替代品
+
     </div>
     <hr/>
     <hr/>
 </body>
 
 </html>
+
+<script>
+    var tabids = ['jichuzujian', 'shenruzujian', 'mobandingyitab'];
+
+    function fvisible(visible) {
+        tabids.forEach((item, index, array) => {
+            document.getElementById(item).style.display = (item === visible) ? '' : 'none'
+        })
+    }
+
+    fvisible(tabids.pop());
+</script>
