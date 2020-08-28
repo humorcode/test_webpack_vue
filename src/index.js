@@ -76,6 +76,10 @@ chengxuhuashijian.print
 import index6moban from './index6.moban.js'
 index6moban.print
 
+//过渡 & 动画------------------------------------------------
+import index7guodudonghua from './index7.guodudonghua.js'
+index7guodudonghua.print
+
 
 // import upperFirst from 'lodash/upperFirst'
 // import camelCase from 'lodash/camelCase'

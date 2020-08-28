@@ -43,6 +43,7 @@
     <button onclick="fvisible('jichuzujian')">基础组件</button>
     <button onclick="fvisible('shenruzujian')">深入了解组件,异步组件</button>
     <button onclick="fvisible('mobandingyitab')">模板定义的替代品</button>
+    <button onclick="fvisible('guodudonghuatab')">过渡 & 动画</button>
     <hr/>
     <hr/>
     <div id="jichuzujian">P基础组件P
@@ -210,13 +211,16 @@
         <my-x-template></my-x-template>
         <hr/>
     </div>
+    <div id="guodudonghuatab">过渡 & 动画
+
+    </div>
     <hr/>
     <hr/>
 </body>
 
 </html>
 <script>
-    var tabids = ['jichuzujian', 'shenruzujian', 'mobandingyitab'];
+    var tabids = ['jichuzujian', 'shenruzujian', 'mobandingyitab', 'guodudonghuatab'];
 
     function fvisible(visible) {
         tabids.forEach((item, index, array) => {
