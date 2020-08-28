@@ -34,6 +34,9 @@
             display: none
         }
     </style>
+    <script type="text/x-template" id="hello-world-template">
+        <p>Hello hello hello我是X-Template,这些可以用于模板特别大的 demo 或极小型的应用，但是其它情况下请避免使用，因为这会将模板和该组件的其它定义分离开。</p>
+    </script>
 </head>
 
 <body>
@@ -201,7 +204,11 @@
         </div>
     </div>
     <div id="mobandingyitab">模板定义的替代品
-
+        <my-inline-template inline-template>
+            <div>(不推荐)我是内联模板,这个组件将会使用其里面的内容作为模板，而不是将其作为被分发的内容。</div>
+        </my-inline-template>
+        <my-x-template></my-x-template>
+        <hr/>
     </div>
     <hr/>
     <hr/>
