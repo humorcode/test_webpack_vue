@@ -6,8 +6,9 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
     entry: {
-        app: './src/index.js'
-            // print: './src/print.js'
+        app: './src/index.js',
+        // print: './src/print.js'
+        index02: './src/02/index_02.js'
     },
     output: {
         filename: 'js_[name].js',
@@ -20,9 +21,16 @@ module.exports = {
         new webpack.HashedModuleIdsPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: "VUE 文档引导入门",
             template: './src/index.html',
-            filename: 'index.html'
+            filename: 'index.html',
+            inject: true,
+            chunks: ['app']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/02/index_02.html',
+            filename: 'index_02.html',
+            inject: true,
+            chunks: ['index02']
         })
     ],
     resolve: { alias: { "vue$": "./src/vue.js" } },
