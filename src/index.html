@@ -385,6 +385,82 @@
             </span>
             </transition-group>
         </div>
+        <style>
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                width: 238px;
+                margin-top: 10px;
+            }
+            
+            .cell {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 25px;
+                height: 25px;
+                border: 1px solid #aaa;
+                margin-right: -1px;
+                margin-bottom: -1px;
+            }
+            
+            .cell:nth-child(3n) {
+                margin-right: 0;
+            }
+            
+            .cell:nth-child(27n) {
+                margin-bottom: 0;
+            }
+            
+            .cell-move {
+                transition: transform 1s;
+            }
+        </style>
+        <div id="sudoku_guodudonghuatab" class="demo">
+            <h1>Lazy Sudoku 多维网格 FLIP 动画</h1>
+            <p>Keep hitting the shuffle button until you win.</p>
+
+            <button @click="shuffle">
+              Shuffle
+            </button>
+            <transition-group name="cell" tag="div" class="container">
+                <div v-for="cell in cells" :key="cell.id" class="cell">
+                    {{ cell.number }}
+                </div>
+            </transition-group>
+        </div>
+        <hr/>
+        <div id="guodudonghuatab_staggered_list_demo">
+            <input v-model="query">
+            <my_staggered_list_demo_transition>
+                <li v-for="(item, index) in computedList" v-bind:key="item.msg" v-bind:data-index="index">{{ item.msg }}</li>
+            </my_staggered_list_demo_transition>
+        </div>
+        <hr/>
+        <div id="guodudonghuatab_dynamic_fade_demo" class="demo">
+            Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration"> Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
+            <transition v-bind:css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave">
+                <p v-if="show">hello动态过渡</p>
+            </transition>
+            <button v-if="stop" v-on:click="stop = false; show = false">Start animating</button>
+            <button v-else v-on:click="stop = true">Stop it!</button>
+        </div>
+        <hr/>状态动画与侦听器
+        <div id="guodudonghuatab_animated-number-demo">
+            <input v-model.number="number" type="number" step="20">
+            <p>{{ animatedNumber }}</p>
+        </div>
+        <div id="guodudonghuatab_example-8">
+            <hr/>把过渡放到组件里
+            <input v-model.number="firstNumber" type="number" step="20"> +
+            <input v-model.number="secondNumber" type="number" step="20"> = {{ result }}
+            <p>
+                <animated-integer v-bind:value="firstNumber"></animated-integer> +
+                <animated-integer v-bind:value="secondNumber"></animated-integer> =
+                <animated-integer v-bind:value="result"></animated-integer>
+            </p>
+        </div>
+        <hr/>
     </div>
     <hr/>
     <hr/>
@@ -399,6 +475,6 @@
             document.getElementById(item).style.display = (item === visible) ? '' : 'none'
         })
     }
-    fvisible(tabids.pop());
+    fvisible(tabids.slice(-1)[0]);
     // fvisible('shenruzujian');
 </script>
