@@ -37,6 +37,116 @@
     <script type="text/x-template" id="hello-world-template">
         <p>Hello hello hello我是X-Template,这些可以用于模板特别大的 demo 或极小型的应用，但是其它情况下请避免使用，因为这会将模板和该组件的其它定义分离开。</p>
     </script>
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s;
+        }
+        
+        .fade-enter,
+        .fade-leave-to
+        /* .fade-leave-active below version 2.1.8 */
+        
+        {
+            opacity: 0;
+        }
+        /* 可以设置不同的进入和离开动画 */
+        /* 设置持续时间和动画函数 */
+        
+        .slide-fade-enter-active {
+            transition: all .3s ease;
+        }
+        
+        .slide-fade-leave-active {
+            transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        
+        .slide-fade-enter,
+        .slide-fade-leave-to
+        /* .slide-fade-leave-active for below version 2.1.8 */
+        
+        {
+            transform: translateX(10px);
+            opacity: 0;
+        }
+        
+        .bounce-enter-active {
+            animation: bounce-in .5s;
+        }
+        
+        .bounce-leave-active {
+            animation: bounce-in .5s reverse;
+        }
+        
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .component-fade-enter-active,
+        .component-fade-leave-active {
+            transition: opacity .3s ease;
+        }
+        
+        .component-fade-enter,
+        .component-fade-leave-to
+        /* .component-fade-leave-active for below version 2.1.8 */
+        
+        {
+            opacity: 0;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <style>
+        .list-item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .list-enter-active,
+        .list-leave-active {
+            transition: all 1s;
+        }
+        
+        .list-enter,
+        .list-leave-to
+        /* .list-leave-active for below version 2.1.8 */
+        
+        {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .flip-list-move {
+            transition: transform 1s;
+        }
+        
+        .list-complete-item {
+            transition: all 1s;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .list-complete-enter,
+        .list-complete-leave-to
+        /* .list-complete-leave-active for below version 2.1.8 */
+        
+        {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .list-complete-leave-active {
+            position: absolute;
+        }
+    </style>
 </head>
 
 <body>
@@ -212,7 +322,69 @@
         <hr/>
     </div>
     <div id="guodudonghuatab">过渡 & 动画
+        <div id="demoguodudonghuatab">
+            <button v-on:click="show = !show">
+              Toggle
+            </button>
+            <transition appear name="fade">
+                <p v-if="show">hello</p>
+            </transition>
+            <transition appear name="slide-fade">
+                <p v-if="show">hello</p>
+            </transition>
+            <transition appear name="bounce">
+                <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+            </transition>
+            <transition appear name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+                <p v-if="show">第三方CSS动画库</p>
+            </transition>
+            <transition appear v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave" v-bind:css="false">
+                <p v-if="show">
+                    第三方JS动画库,appear初始化过渡效果
+                </p>
+            </transition>
+            <transition appear name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+                <button v-if="isEditing" key="save" @click="isEditing = !isEditing">
+                  Save
+                </button>
+                <button v-else key="edit" @click="isEditing = !isEditing">
+                  Edit
+                </button>
+            </transition>
+            <transition appear name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+                <button v-bind:key="isEditing">
+                    {{ isEditing ? 'Save2' : 'Edit2' }}
+                  </button>
+            </transition>
+            <button @click="isview"> 切换组件  </button>
+            <transition appear name="slide-fade">
+                <!-- <transition appear name="component-fade" mode="out-in"> -->
+                <component v-bind:is="view"></component>
+            </transition>
 
+            <hr/>
+        </div>
+        <div id="demoguodudonghuatablistdemo">
+
+            <button v-on:click="add">Add</button>
+            <button v-on:click="remove">Remove</button>
+            <transition-group name="list" tag="p">
+                <span v-for="item in items" v-bind:key="item" class="list-item">
+                {{ item }}
+              </span>
+            </transition-group>
+            <button v-on:click="shuffle">Shuffle</button>
+            <transition-group name="flip-list" tag="ul">
+                <li v-for="item in items" v-bind:key="item">
+                    {{ item }}
+                </li>
+            </transition-group>
+            <transition-group name="list-complete" tag="p">
+                <span v-for="item in items" v-bind:key="item" class="list-complete-item">
+            {{ item }}
+            </span>
+            </transition-group>
+        </div>
     </div>
     <hr/>
     <hr/>
