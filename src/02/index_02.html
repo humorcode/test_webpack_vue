@@ -7,10 +7,39 @@
 </head>
 
 <body>
-    <div id="one">
-        {{msg}}
+    <button onclick="fvisible('zidingyizhiling_tag')">混入&自定义指令</button>
+    <button onclick="fvisible('zidingyixuanranhanshu_tag')">渲染函数 & JSX</button>
+    <div id="zidingyizhiling_tag">混入&自定义指令
+        <hr/>
+        <div id="zidingyizhilingtag_msg">
+            <input v-focus v-model="msg"> {{msg}}
+        </div>
+        <div id="zidingyizhilingtag_hook_arg" v-demo:foo.a.b="message">自定义钩子</div>
+        <div id="zidingyizhilingtag_d_hook_arg">
+            <p v-pin:[direction]="200">
+                动态指令参数 Stick me 200px from the top of the page
+            </p>
+        </div>
+        <div id="zidingyizhilingtag_d_hook_var">
+            <div v-demo_zimian="{ color: 'white对象字面量1', text: 'hello!对象字面量2' }">对象字面量</div>
+        </div>
     </div>
+
+    <div id="zidingyixuanranhanshu_tag">渲染函数 & JSX</div>
+    <hr/>
     <hr/>
 </body>
 
 </html>
+
+<script>
+    var tabids = ['zidingyizhiling_tag', 'zidingyixuanranhanshu_tag'];
+
+    function fvisible(visible) {
+        tabids.forEach((item, index, array) => {
+            document.getElementById(item).style.display = (item === visible) ? '' : 'none'
+        })
+    }
+    fvisible(tabids.slice(-1)[0]);
+    // fvisible('shenruzujian');
+</script>
