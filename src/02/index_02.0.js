@@ -117,3 +117,42 @@ new Vue({
     el: '#anchored_heading_xunran_full_id03',
     data: { msg: '这就是深入底层的代价，但与 v-model 相比，这可以让你更好地控制交互细节。' }
 });
+//渲染函数 向子组件中传递作用域插槽:--------------------
+Vue.component('anchored_heading_xunran_full04_child', {
+    props: ['message'],
+    render: function(createElement) {
+        // `<p><slot :messagechild="message"></slot></p>`
+        return createElement('p', [
+            this.$scopedSlots.default({
+                messagechild: this.message
+            })
+        ])
+    }
+})
+Vue.component('anchored_heading_xunran_full04', {
+    props: ['props01'],
+    render: function(createElement) {
+        // `<div><anchored_heading_xunran_full04_child v-slot="props">
+        //          <span>{{ props.text }}</span> 
+        // </anchored_heading_xunran_full04_child></div>`
+        return createElement('div', [
+            createElement('anchored_heading_xunran_full04_child', {
+                // 在数据对象中传递 `scopedSlots`
+                // 格式为 { name: props => VNode | Array<VNode> }
+                props: {
+                    message: this.props01
+                },
+                scopedSlots: {
+                    default: function(props) { //props=messagechild
+                        console.log(props)
+                        return createElement('span', props.messagechild.txt)
+                    }
+                }
+            })
+        ])
+    }
+})
+new Vue({
+    el: '#anchored_heading_xunran_full_id04',
+    data: { items: { name: '好啊', txt: '谁是txt啊==渲染函数 向子组件中传递作用域插槽' } }
+});
