@@ -24,8 +24,37 @@
             <div v-demo_zimian="{ color: 'white对象字面量1', text: 'hello!对象字面量2' }">对象字面量</div>
         </div>
     </div>
+    <div id="zidingyixuanranhanshu_tag">渲染函数 & JSX
+        <div id="zidingyixuanranhanshu_tag_chuantong">
+            <anchored_heading_chuantong :level="2">使用模板 来创建你的 HTML!</anchored_heading_chuantong>
+            <anchored_heading_xunran :level="2">渲染函数 来创建你的 HTML!</anchored_heading_xunran>
+        </div>
+        <hr/>
+        <div id="anchored_heading_xunran_full_id">
+            <div>
+                <anchored_heading_xunran_full :level="4">11.渲染函数(完整示例) 来创建你的 HTMLA!</anchored_heading_xunran>
+            </div>
+            <div>
+                <anchored_heading_xunran_full :level="6">22.渲染函数(完整示例) 来创建你的 HTMLB!</anchored_heading_xunran>
+            </div>
+        </div>
+        <hr/>
+        <div id="anchored_heading_xunran_full_id01">
+            <anchored_heading_xunran_full01>工厂函数渲染</anchored_heading_xunran_full01>
+        </div>
+        <hr/>使用 JavaScript 代替模板功能
+        <div id="anchored_heading_xunran_full_id02">
+            <anchored_heading_xunran_full02 :items="items"> </anchored_heading_xunran_full02>
+        </div>
+        <hr/>使用 JavaScript 代替模板功能
+        <div id="anchored_heading_xunran_full_id03">
+            渲染函数实现v-model:
+            <anchored_heading_xunran_full03 v-model="msg"> </anchored_heading_xunran_full03>
+            <p>{{msg}}</p>
+        </div>
+    </div>
 
-    <div id="zidingyixuanranhanshu_tag">渲染函数 & JSX</div>
+    <hr/>
     <hr/>
     <hr/>
 </body>

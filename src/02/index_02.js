@@ -1,5 +1,4 @@
 import Vue from './../vue.js'
-
 //混入----------------------------------------------
 var mixin = {
     data: function() { return { message: 'hello', foo: "abc" } },
@@ -81,4 +80,16 @@ Vue.directive('demo_zimian', function(el, binding) {
     console.log(binding.value.color) // => "white"
     console.log(binding.value.text) // => "hello!"
 })
-new Vue({ el: '#zidingyizhilingtag_d_hook_var' })
+new Vue({ el: '#zidingyizhilingtag_d_hook_var' });
+
+
+
+
+
+
+
+
+//================================
+
+import index_020 from './index_02.0.js'
+console.log(index_020.print);
