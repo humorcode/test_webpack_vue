@@ -7,8 +7,10 @@
 </head>
 
 <body>
-    <button onclick="fvisible('zidingyizhiling_tag')">混入&自定义指令</button>
-    <button onclick="fvisible('zidingyixuanranhanshu_tag')">渲染函数 & JSX</button>
+    <button onclick="fvisible('zidingyizhiling_tag')">1.混入&自定义指令</button>
+    <button onclick="fvisible('zidingyixuanranhanshu_tag')">2.渲染函数</button>
+    <button onclick="fvisible('zidingyixuanranhanshujsx_tag')">2.JSX</button>
+    <button onclick="fvisible('zidingyixuanranhanshuzujian_tag')">3.函数式组件</button>
     <div id="zidingyizhiling_tag">混入&自定义指令
         <hr/>
         <div id="zidingyizhilingtag_msg">
@@ -24,7 +26,7 @@
             <div v-demo_zimian="{ color: 'white对象字面量1', text: 'hello!对象字面量2' }">对象字面量</div>
         </div>
     </div>
-    <div id="zidingyixuanranhanshu_tag">渲染函数 & JSX
+    <div id="zidingyixuanranhanshu_tag">2.渲染函数
         <div id="zidingyixuanranhanshu_tag_chuantong">
             <anchored_heading_chuantong :level="2">使用模板 来创建你的 HTML!</anchored_heading_chuantong>
             <anchored_heading_xunran :level="2">渲染函数 来创建你的 HTML!</anchored_heading_xunran>
@@ -58,7 +60,9 @@
             <anchored_heading_xunran_full04 :props01="items"></anchored_heading_xunran_full04>
         </div>
     </div>
-
+    <div id="zidingyixuanranhanshujsx_tag">2.JSX </div>
+    <div id="zidingyixuanranhanshuzujian_tag">3.函数式组件
+    </div>
     <hr/>
     <hr/>
     <hr/>
@@ -67,7 +71,9 @@
 </html>
 
 <script>
-    var tabids = ['zidingyizhiling_tag', 'zidingyixuanranhanshu_tag'];
+    var tabids = ['zidingyizhiling_tag', 'zidingyixuanranhanshu_tag', 'zidingyixuanranhanshujsx_tag',
+        'zidingyixuanranhanshuzujian_tag'
+    ];
 
     function fvisible(visible) {
         tabids.forEach((item, index, array) => {

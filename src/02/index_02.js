@@ -93,3 +93,5 @@ new Vue({ el: '#zidingyizhilingtag_d_hook_var' });
 
 import index_020 from './index_02.0.js'
 console.log(index_020.print);
+import index_021 from './index_02.1.js'
+console.log(index_021.print);
