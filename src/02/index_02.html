@@ -11,6 +11,7 @@
     <button onclick="fvisible('zidingyixuanranhanshu_tag')">2.渲染函数</button>
     <button onclick="fvisible('zidingyixuanranhanshujsx_tag')">2.JSX</button>
     <button onclick="fvisible('zidingyixuanranhanshuzujian_tag')">3.函数式组件</button>
+    <button onclick="fvisible('zidingyiguolvqi_tag')">4.过滤器</button>
     <div id="zidingyizhiling_tag">混入&自定义指令
         <hr/>
         <div id="zidingyizhilingtag_msg">
@@ -62,6 +63,11 @@
     </div>
     <div id="zidingyixuanranhanshujsx_tag">2.JSX </div>
     <div id="zidingyixuanranhanshuzujian_tag">3.函数式组件
+    </div>
+    <div id="zidingyiguolvqi_tag">4.过滤器
+        <div id="zidingyiguolvqi_tag_filter01">
+            <div v-bind:id="rawId | formatId">{{ message | capitalize }}</div>
+        </div>
     </div>
     <hr/>
     <hr/>
