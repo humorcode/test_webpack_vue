@@ -65,8 +65,12 @@
     <div id="zidingyixuanranhanshuzujian_tag">3.函数式组件
     </div>
     <div id="zidingyiguolvqi_tag">4.过滤器
-        <div id="zidingyiguolvqi_tag_filter01">
-            <div v-bind:id="rawId | formatId">{{ message | capitalize }}</div>
+        <div id="zidingyiguolvqi_tag_filter_id">
+            <input v-model="msg01" /> 原始数据:{{msg01}}
+            <br/>过滤规则(filterA:第一个字母大写,filterB:最后字母大写,filterC:插入最后字符'arg1','arg2'):
+            <zidingyiguolvqi_tag_filter v-bind:msg="msg01 | filterA" #default="{ msg02 }">
+                {{ msg02 | filterB | filterC('arg1','arg2') }}
+            </zidingyiguolvqi_tag_filter>
         </div>
     </div>
     <hr/>
