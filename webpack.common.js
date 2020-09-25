@@ -31,6 +31,18 @@ module.exports = {
             filename: 'index_02.html',
             inject: true,
             chunks: ['index02']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/03/index_03.html',
+            filename: 'index_03.html',
+            inject: false, //true、body、head和false
+            excludeChunks: ['']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/03/index_03_iframe.html',
+            filename: 'index_03_iframe.html',
+            inject: false, //true、body、head和false
+            excludeChunks: ['']
         })
     ],
     resolve: { alias: { "vue$": "./src/vue.js" } },

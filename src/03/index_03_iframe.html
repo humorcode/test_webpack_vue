@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+    <div>当前是子iframe页面</div>
+    <button onclick="showorhidden('page_baidu')">百度-隐藏/显示</button>
+    <button onclick="showorhidden('page_bing')">必应-隐藏/显示</button>
+    <script>
+        function showorhidden(iframe_name){
+           var iframe_tmp = top.document.getElementsByName(iframe_name)[0];
+           var iframe_display = iframe_tmp.style.display;
+           if(iframe_display&&iframe_display==='none'){
+                iframe_tmp.style.display = '';
+           }else{ 
+                iframe_tmp.style.display = 'none';
+           }
+        }
+    </script>
+</body>
+</html>
