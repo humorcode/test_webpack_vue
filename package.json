@@ -9,7 +9,8 @@
         "start": "webpack-dev-server --config webpack.dev.js",
         "build": "webpack --config webpack.prod.js",
         "server": "node server.js",
-        "server_dev": "node server_dev.js"
+        "server_dev": "node server_dev.js",
+        "server_express": "node express_server.js"
     },
     "repository": {
         "type": "git",
